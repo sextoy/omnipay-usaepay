@@ -64,16 +64,23 @@ class AuthorizeRequestTest extends TestCase
 
     public function testSendFailure()
     {
+        $card = $this->getValidCard();
+        $card['number'] = '4000300011112220';
+        $card['expiryMonth'] = '09';
+        $card['expiryYear'] = '2019';
+        $card['cvv'] = '999';
+
+        $this->request->setCard($card);
         $this->request->setSandbox(true);
         $this->request->setTestMode(true);
         $this->request->setSource('_7M6zPa7P9k19g82M1aR8aOPvgFVcIWv');
-        $this->request->setPin('');
+        $this->request->setPin('123456');
         $this->request->setInvoice(substr(md5(rand()), 0, 10));
         $response = $this->request->send();
 
         $this->assertFalse($response->isSuccessful());
         $this->assertFalse($response->isRedirect());
         $this->assertSame('000000', $response->getTransactionReference());
-        $this->assertSame('Transaction authentication required.', $response->getMessage());
+        $this->assertSame('Card Declined (00)', $response->getMessage());
     }
 }
