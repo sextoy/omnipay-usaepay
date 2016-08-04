@@ -1,0 +1,12 @@
+HTTP/1.1 200 OK
+Server: nginx
+Date: Fri, 01 Apr 2016 21:14:11 GMT
+Content-Type: text/html
+Content-Length: 377
+Connection: keep-alive
+Keep-Alive: timeout=15
+Strict-Transport-Security: max-age=16070400; includeSubDomains
+P3P: policyref="http://www.usaepay.com/w3c/p3p.xml", CP="NON TAIa IVAa IVDa OUR NOR PHY ONL UNI FIN INT DEM"
+Strict-Transport-Security: max-age=15768000
+
+UMversion=2.9&UMstatus=Declined&UMauthCode=000000&UMrefNum=1099323560&UMavsResult=Unmapped%20AVS%20response%20%28XX%20%29&UMavsResultCode=XX%20&UMcvv2Result=No%20response%20from%20association&UMcvv2ResultCode=X&UMvpasResultCode=&UMresult=D&UMerror=Card%20Declined%20%2800%29&UMerrorcode=10127&UMbatch=1376&UMbatchRefNum=34673159&UMprocRefNum=&UMcardLevelResult=&UMfiller=filled
