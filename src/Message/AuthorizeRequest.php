@@ -44,6 +44,20 @@ namespace Omnipay\USAePay\Message;
  */
 class AuthorizeRequest extends AbstractRequest
 {
+    public function getData()
+    {
+        $this->validate('amount', 'currency');
+
+        $this->validate('card');
+        $this->getCard()->validate();
+
+        return array(
+            'amount' => $this->getAmount(),
+            'currency' => strtolower($this->getCurrency()),
+            'card' => $this->getCard(),
+        );
+    }
+
     public function getCommand()
     {
         return 'authonly';
