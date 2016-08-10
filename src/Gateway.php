@@ -56,8 +56,19 @@ class Gateway extends AbstractGateway
     {
         return array(
             'source' => '',
-            'testMode' => false
+            'testMode' => false,
+            'sandbox' => false
         );
+    }
+
+    public function getSandbox()
+    {
+        return $this->getParameter('sandbox');
+    }
+
+    public function setSandbox($value)
+    {
+        return $this->setParameter('sandbox', $value);
     }
 
     public function getSource()
