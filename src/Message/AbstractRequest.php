@@ -25,6 +25,8 @@ abstract class AbstractRequest extends OmnipayAbstractRequest
 
     abstract public function getCommand();
 
+    abstract public function getData();
+
     public function getSandbox()
     {
         return $this->getParameter('sandbox');
@@ -63,19 +65,6 @@ abstract class AbstractRequest extends OmnipayAbstractRequest
     public function setInvoice($value)
     {
         return $this->setParameter('invoice', $value);
-    }
-
-    public function getData()
-    {
-        $this->validate('amount', 'currency');
-
-        $this->validate('card');
-        $this->getCard()->validate();
-
-        return array(
-            'amount' => $this->getAmount(),
-            'currency' => strtolower($this->getCurrency())
-        );
     }
 
     /**
