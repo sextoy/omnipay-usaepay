@@ -44,4 +44,8 @@ namespace Omnipay\USAePay\Message;
  */
 class AuthorizeRequest extends AbstractRequest
 {
+    public function getCommand()
+    {
+        return 'authonly';
+    }
 }

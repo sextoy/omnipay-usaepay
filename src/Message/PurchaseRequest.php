@@ -44,4 +44,8 @@ namespace Omnipay\USAePay\Message;
  */
 class PurchaseRequest extends AuthorizeRequest
 {
+    public function getCommand()
+    {
+        return 'cc:sale';
+    }
 }

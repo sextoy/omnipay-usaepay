@@ -94,6 +94,21 @@ class Gateway extends AbstractGateway
     }
 
     /**
+     * Capture request.
+     *
+     * Use this request to capture and process a previously created
+     * authorization.
+     *
+     * @param array $parameters
+     *
+     * @return \Omnipay\USAePay\Message\CaptureRequest
+     */
+    public function capture(array $parameters = array())
+    {
+        return $this->createRequest('\Omnipay\USAePay\Message\CaptureRequest', $parameters);
+    }
+
+    /**
      * Create a purchase request.
      *
      * @param array $parameters

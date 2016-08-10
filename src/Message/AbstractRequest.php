@@ -23,6 +23,8 @@ abstract class AbstractRequest extends OmnipayAbstractRequest
 
     protected $sandboxEndpoint = 'https://sandbox.usaepay.com/gate';
 
+    abstract public function getCommand();
+
     public function getSandbox()
     {
         return $this->getParameter('sandbox');
@@ -118,14 +120,20 @@ abstract class AbstractRequest extends OmnipayAbstractRequest
             $umTransaction->testmode = $this->getTestMode();
             $umTransaction->key = $this->getSource();
             $umTransaction->pin = $this->getPin();
+            $umTransaction->command = $this->getCommand();
             $umTransaction->invoice = $this->getInvoice();
             $umTransaction->amount = $data['amount'];
-            $umTransaction->card = $this->getCard()->getNumber();
-            $umTransaction->exp = $this->getCard()->getExpiryDate('my');
-            $umTransaction->cvv2 = $this->getCard()->getCvv();
-            $umTransaction->cardholder = $this->getCard()->getName();
-            $umTransaction->street = $this->getCard()->getAddress1();
-            $umTransaction->zip = $this->getCard()->getPostcode();
+
+            if (isset($data['card'])) {
+                $umTransaction->card = $this->getCard()->getNumber();
+                $umTransaction->exp = $this->getCard()->getExpiryDate('my');
+                $umTransaction->cvv2 = $this->getCard()->getCvv();
+                $umTransaction->cardholder = $this->getCard()->getName();
+                $umTransaction->street = $this->getCard()->getAddress1();
+                $umTransaction->zip = $this->getCard()->getPostcode();
+            } else {
+                $umTransaction->refnum = $this->getTransactionReference();
+            }
 
             $umTransaction->Process();
 
