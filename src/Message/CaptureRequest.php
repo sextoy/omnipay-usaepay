@@ -43,6 +43,6 @@ class CaptureRequest extends AuthorizeRequest
 
     public function getCommand()
     {
-        return 'capture';
+        return 'cc:capture';
     }
 }

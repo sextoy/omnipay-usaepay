@@ -60,6 +60,6 @@ class AuthorizeRequest extends AbstractRequest
 
     public function getCommand()
     {
-        return 'authonly';
+        return 'cc:authonly';
     }
 }
