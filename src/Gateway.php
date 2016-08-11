@@ -119,4 +119,27 @@ class Gateway extends AbstractGateway
     {
         return $this->createRequest('\Omnipay\USAePay\Message\PurchaseRequest', $parameters);
     }
+
+    /**
+     * Refund Request.
+     *
+     * The 'refund' command allows the merchant to refund some or all of a
+     * previous sale transaction. It can be used with both credit card and check
+     * sales. It requires that the Transaction ID (refnum) of the original sale
+     * be submitted in the UMrefNum field along with the amount to be refunded.
+     * If the amount is not submitted, then the entire amount of the original
+     * sale will be refunded. The refund command will work for both credit card
+     * and check transactions. Not all check processors support refunds on
+     * checks so Merchants should verify with their provider that they can use
+     * this command.
+     *
+     * @param array $parameters
+     *
+     * @return \Omnipay\USAePay\Message\RefundRequest
+     */
+    public function refund(array $parameters = array())
+    {
+        return $this->createRequest('\Omnipay\USAePay\Message\RefundRequest', $parameters);
+    }
+
 }

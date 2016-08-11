@@ -1,0 +1,11 @@
+HTTP/1.1 200 OK
+Server: nginx
+Date: Thu, 11 Aug 2016 10:14:33 GMT
+Content-Type: text/html
+Content-Length: 521
+Connection: keep-alive
+Keep-Alive: timeout=15
+P3P: policyref="http://www.usaepay.com/w3c/p3p.xml", CP="NON TAIa IVAa IVDa OUR NOR PHY ONL UNI FIN INT DEM"
+Strict-Transport-Security: max-age=15768000
+
+UMversion=2.9&UMstatus=Approved&UMauthCode=TESTMD&UMrefNum=108888795&UMavsResult=Unmapped%20AVS%20response%20%28%20%20%20%29&UMavsResultCode=%20%20%20&UMcvv2Result=No%20CVV2%2FCVC%20data%20available%20for%20transaction.&UMcvv2ResultCode=&UMresult=A&UMvpasResultCode=&UMerror=&UMerrorcode=00000&UMcustnum=&UMbatch=1&UMbatchRefNum=236616&UMisDuplicate=N&UMconvertedAmount=&UMconvertedAmountCurrency=840&UMconversionRate=&UMcustReceiptResult=No%20Receipt%20Sent&UMprocRefNum=&UMcardLevelResult=&UMauthAmount=&UMfiller=filled
