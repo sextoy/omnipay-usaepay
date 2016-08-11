@@ -21,7 +21,8 @@ class ResponseTest extends TestCase
 
         $this->assertTrue($response->isSuccessful());
         $this->assertFalse($response->isRedirect());
-        $this->assertEquals('TESTMD', $response->getTransactionReference());
+        $this->assertSame('0', $response->getTransactionReference());
+        $this->assertSame('TESTMD', $response->getAuthorizationCode());
         $this->assertEquals('', $response->getMessage());
     }
 
@@ -32,7 +33,7 @@ class ResponseTest extends TestCase
 
         $this->assertFalse($response->isSuccessful());
         $this->assertFalse($response->isRedirect());
-        $this->assertEquals('000000', $response->getTransactionReference());
+        $this->assertStringMatchesFormat('%d', $response->getTransactionReference());
         $this->assertEquals('Card Declined (00)', $response->getMessage());
     }
 }

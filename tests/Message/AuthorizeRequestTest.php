@@ -27,12 +27,13 @@ class AuthorizeRequestTest extends TestCase
 
     public function testMockSendSuccess()
     {
-        $this->setMockHttpResponse('PurchaseSuccess.txt');
+        $this->setMockHttpResponse('AuthorizeSuccess.txt');
         $response = $this->request->send();
 
         $this->assertTrue($response->isSuccessful());
         $this->assertFalse($response->isRedirect());
-        $this->assertSame('TESTMD', $response->getTransactionReference());
+        $this->assertSame('0', $response->getTransactionReference());
+        $this->assertSame('TESTMD', $response->getAuthorizationCode());
         $this->assertSame('', $response->getMessage());
     }
 
@@ -49,16 +50,20 @@ class AuthorizeRequestTest extends TestCase
         $this->assertFalse($response->isRedirect());
         $this->assertStringMatchesFormat('%d', $response->getTransactionReference());
         $this->assertSame('Approved', $response->getMessage());
+
+        return [
+            'transactionReference' => $response->getTransactionReference()
+        ];
     }
 
     public function testMockSendFailure()
     {
-        $this->setMockHttpResponse('PurchaseFailure.txt');
+        $this->setMockHttpResponse('AuthorizeFailure.txt');
         $response = $this->request->send();
 
         $this->assertFalse($response->isSuccessful());
         $this->assertFalse($response->isRedirect());
-        $this->assertSame('000000', $response->getTransactionReference());
+        $this->assertStringMatchesFormat('%d', $response->getTransactionReference());
         $this->assertSame('Card Declined (00)', $response->getMessage());
     }
 
@@ -80,7 +85,7 @@ class AuthorizeRequestTest extends TestCase
 
         $this->assertFalse($response->isSuccessful());
         $this->assertFalse($response->isRedirect());
-        $this->assertSame('000000', $response->getTransactionReference());
+        $this->assertStringMatchesFormat('%d', $response->getTransactionReference());
         $this->assertSame('Card Declined (00)', $response->getMessage());
     }
 }

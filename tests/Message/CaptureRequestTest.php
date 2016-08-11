@@ -30,7 +30,8 @@ class CaptureRequestTest extends TestCase
 
         $this->assertTrue($response->isSuccessful());
         $this->assertFalse($response->isRedirect());
-        $this->assertSame('TESTMD', $response->getTransactionReference());
+        $this->assertSame('0', $response->getTransactionReference());
+        $this->assertSame('TESTMD', $response->getAuthorizationCode());
         $this->assertSame('', $response->getMessage());
     }
 
@@ -56,7 +57,7 @@ class CaptureRequestTest extends TestCase
 
         $this->assertFalse($response->isSuccessful());
         $this->assertFalse($response->isRedirect());
-        $this->assertSame('000000', $response->getTransactionReference());
+        $this->assertSame('', $response->getTransactionReference());
         $this->assertSame('Unable to find original transaction.', $response->getMessage());
     }
 
@@ -72,7 +73,7 @@ class CaptureRequestTest extends TestCase
 
         $this->assertFalse($response->isSuccessful());
         $this->assertFalse($response->isRedirect());
-        $this->assertSame('000000', $response->getTransactionReference());
+        $this->assertSame('', $response->getTransactionReference());
         $this->assertSame('Unable to find original transaction.', $response->getMessage());
     }
 }
