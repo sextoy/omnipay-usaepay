@@ -23,6 +23,9 @@ class CaptureRequestTest extends TestCase
         $this->assertSame('10.00', $data['amount']);
     }
 
+    /**
+     * @group mock
+     */
     public function testMockSendSuccess()
     {
         $this->setMockHttpResponse('CaptureSuccess.txt');
@@ -35,6 +38,9 @@ class CaptureRequestTest extends TestCase
         $this->assertSame('', $response->getMessage());
     }
 
+    /**
+     * @group network
+     */
     public function testSendSuccess()
     {
         $this->request->setSandbox(true);
@@ -50,6 +56,9 @@ class CaptureRequestTest extends TestCase
         $this->assertSame('Approved', $response->getMessage());
     }
 
+    /**
+     * @group mock
+     */
     public function testMockSendFailure()
     {
         $this->setMockHttpResponse('CaptureFailure.txt');
@@ -61,6 +70,9 @@ class CaptureRequestTest extends TestCase
         $this->assertSame('Unable to find original transaction.', $response->getMessage());
     }
 
+    /**
+     * @group network
+     */
     public function testSendFailure()
     {
         $this->request->setSandbox(true);

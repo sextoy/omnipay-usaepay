@@ -25,6 +25,9 @@ class PurchaseRequestTest extends TestCase
         $this->assertSame('usd', $data['currency']);
     }
 
+    /**
+     * @group mock
+     */
     public function testMockSendSuccess()
     {
         $this->setMockHttpResponse('PurchaseSuccess.txt');
@@ -37,6 +40,9 @@ class PurchaseRequestTest extends TestCase
         $this->assertSame('', $response->getMessage());
     }
 
+    /**
+     * @group network
+     */
     public function testSendSuccess()
     {
         $this->request->setSandbox(true);
@@ -56,6 +62,9 @@ class PurchaseRequestTest extends TestCase
         ];
     }
 
+    /**
+     * @group mock
+     */
     public function testMockSendFailure()
     {
         $this->setMockHttpResponse('PurchaseFailure.txt');
@@ -67,6 +76,9 @@ class PurchaseRequestTest extends TestCase
         $this->assertSame('Card Declined (00)', $response->getMessage());
     }
 
+    /**
+     * @group network
+     */
     public function testSendFailure()
     {
         $card = $this->getValidCard();

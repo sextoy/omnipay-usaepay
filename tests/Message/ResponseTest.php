@@ -14,6 +14,9 @@ class ResponseTest extends TestCase
         $response = new Response($this->getMockRequest(), '');
     }
 
+    /**
+     * @group mock
+     */
     public function testMockPurchaseSuccess()
     {
         $httpResponse = $this->getMockHttpResponse('PurchaseSuccess.txt');
@@ -26,6 +29,9 @@ class ResponseTest extends TestCase
         $this->assertEquals('', $response->getMessage());
     }
 
+    /**
+     * @group mock
+     */
     public function testMockPurchaseFailure()
     {
         $httpResponse = $this->getMockHttpResponse('PurchaseFailure.txt');

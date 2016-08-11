@@ -23,6 +23,9 @@ class RefundRequestTest extends TestCase
         $this->assertSame('10.00', $data['amount']);
     }
 
+    /**
+     * @group mock
+     */
     public function testMockSendSuccess()
     {
         $this->setMockHttpResponse('RefundSuccess.txt');
@@ -36,6 +39,8 @@ class RefundRequestTest extends TestCase
     }
 
     /**
+     * @group network
+     *
      * @depends Omnipay\USAePay\Message\AuthorizeRequestTest::testSendSuccess
      */
     public function testSendSuccess($data)
@@ -54,6 +59,9 @@ class RefundRequestTest extends TestCase
         $this->assertEmpty('', $response->getMessage());
     }
 
+    /**
+     * @group mock
+     */
     public function testMockSendFailure()
     {
         $this->setMockHttpResponse('RefundFailure.txt');
@@ -65,6 +73,9 @@ class RefundRequestTest extends TestCase
         $this->assertSame('Amount exceeds original transaction amount.', $response->getMessage());
     }
 
+    /**
+     * @group network
+     */
     public function testSendFailure()
     {
         $this->request->setSandbox(true);

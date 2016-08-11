@@ -23,6 +23,9 @@ class VoidRequestTest extends TestCase
         $this->assertSame('10.00', $data['amount']);
     }
 
+    /**
+     * @group mock
+     */
     public function testMockSendSuccess()
     {
         $this->setMockHttpResponse('VoidSuccess.txt');
@@ -36,6 +39,8 @@ class VoidRequestTest extends TestCase
     }
 
     /**
+     * @group network
+     *
      * @depends Omnipay\USAePay\Message\PurchaseRequestTest::testSendSuccess
      */
     public function testSendSuccess($data)
@@ -54,6 +59,9 @@ class VoidRequestTest extends TestCase
         $this->assertEmpty('', $response->getMessage());
     }
 
+    /**
+     * @group mock
+     */
     public function testMockSendFailure()
     {
         $this->setMockHttpResponse('VoidFailure.txt');
@@ -65,6 +73,9 @@ class VoidRequestTest extends TestCase
         $this->assertSame('Unable to locate transaction', $response->getMessage());
     }
 
+    /**
+     * @group network
+     */
     public function testSendFailure()
     {
         $this->request->setSandbox(true);
