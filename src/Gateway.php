@@ -141,4 +141,16 @@ class Gateway extends AbstractGateway
     {
         return $this->createRequest('\Omnipay\USAePay\Message\RefundRequest', $parameters);
     }
+
+    /**
+     * Void Request.
+     *
+     * @param array $parameters
+     *
+     * @return \Omnipay\USAePay\Message\VoidRequest
+     */
+    public function void(array $parameters = array())
+    {
+        return $this->createRequest('\Omnipay\USAePay\Message\VoidRequest', $parameters);
+    }
 }
