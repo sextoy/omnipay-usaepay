@@ -141,5 +141,4 @@ class Gateway extends AbstractGateway
     {
         return $this->createRequest('\Omnipay\USAePay\Message\RefundRequest', $parameters);
     }
-
 }
