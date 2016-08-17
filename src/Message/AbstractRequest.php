@@ -67,6 +67,16 @@ abstract class AbstractRequest extends OmnipayAbstractRequest
         return $this->setParameter('invoice', $value);
     }
 
+    public function getDescription()
+    {
+        return $this->getParameter('description');
+    }
+
+    public function setDescription($value)
+    {
+        return $this->setParameter('description', $value);
+    }
+
     /**
      * Get HTTP Method.
      *
@@ -112,6 +122,7 @@ abstract class AbstractRequest extends OmnipayAbstractRequest
             $umTransaction->command = $this->getCommand();
             $umTransaction->invoice = $this->getInvoice();
             $umTransaction->amount = $data['amount'];
+            $umTransaction->description = $this->getDescription();
 
             if (isset($data['card'])) {
                 $umTransaction->card = $this->getCard()->getNumber();
@@ -120,6 +131,18 @@ abstract class AbstractRequest extends OmnipayAbstractRequest
                 $umTransaction->cardholder = $this->getCard()->getName();
                 $umTransaction->street = $this->getCard()->getAddress1();
                 $umTransaction->zip = $this->getCard()->getPostcode();
+                $umTransaction->email = $this->getCard()->getEmail();
+
+                $umTransaction->billfname = $this->getCard()->getBillingFirstName();
+                $umTransaction->billlname = $this->getCard()->getBillingLastName();
+                $umTransaction->billcompany = $this->getCard()->getBillingCompany();
+                $umTransaction->billstreet = $this->getCard()->getBillingAddress1();
+                $umTransaction->billstreet2 = $this->getCard()->getBillingAddress2();
+                $umTransaction->billcity = $this->getCard()->getBillingCity();
+                $umTransaction->billstate = $this->getCard()->getBillingState();
+                $umTransaction->billzip = $this->getCard()->getBillingPostcode();
+                $umTransaction->billcountry = $this->getCard()->getBillingCountry();
+                $umTransaction->billphone = $this->getCard()->getBillingPhone();
             } elseif ($this->getCardReference()) {
                 $umTransaction->card = $this->getCardReference();
                 $umTransaction->exp = '0000';
