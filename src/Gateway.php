@@ -168,4 +168,17 @@ class Gateway extends AbstractGateway
     {
         return $this->createRequest('\Omnipay\USAePay\Message\CreateCardRequest', $parameters);
     }
+
+    /**
+     * Create Subscription
+     *
+     * This call can be used to create a subscription (recurring payment).
+     *
+     * @param array $parameters
+     * @return \Omnipay\USAePay\Message\CreateSubscriptionRequest
+     */
+    public function createSubscription(array $parameters = array())
+    {
+        return $this->createRequest('\Omnipay\USAePay\Message\CreateSubscriptionRequest', $parameters);
+    }
 }

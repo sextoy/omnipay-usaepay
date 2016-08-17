@@ -69,4 +69,9 @@ class Response extends AbstractResponse
     {
         return isset($this->data['UMmaskedCardNum']) ? $this->data['UMmaskedCardNum'] : null;
     }
+
+    public function getCustomerReference()
+    {
+        return isset($this->data['UMcustnum']) ? $this->data['UMcustnum'] : null;
+    }
 }

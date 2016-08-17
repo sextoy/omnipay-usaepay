@@ -1,0 +1,11 @@
+HTTP/1.1 200 OK
+Server: nginx
+Date: Wed, 17 Aug 2016 14:42:27 GMT
+Content-Type: text/html
+Content-Length: 349
+Connection: keep-alive
+Keep-Alive: timeout=15
+P3P: policyref="http://www.usaepay.com/w3c/p3p.xml", CP="NON TAIa IVAa IVDa OUR NOR PHY ONL UNI FIN INT DEM"
+Strict-Transport-Security: max-age=15768000
+
+UMversion=2.9&UMstatus=Declined&UMauthCode=000000&UMrefNum=109001604&UMavsResult=Address%3A%20Match%20%26%205%20Digit%20Zip%3A%20Match&UMavsResultCode=YYY&UMcvv2Result=No%20Match&UMcvv2ResultCode=N&UMvpasResultCode=&UMresult=D&UMerror=Do%20not%20Honor&UMerrorcode=10205&UMbatch=1&UMbatchRefNum=236616&UMprocRefNum=&UMcardLevelResult=&UMfiller=filled

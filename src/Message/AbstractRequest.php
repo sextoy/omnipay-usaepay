@@ -23,6 +23,14 @@ abstract class AbstractRequest extends OmnipayAbstractRequest
 
     protected $sandboxEndpoint = 'https://sandbox.usaepay.com/gate';
 
+    protected $intervals = [
+        '' => 'disabled',
+        'day' => 'daily',
+        'week' => 'weekly',
+        'month' => 'monthly',
+        'year' => 'annually',
+    ];
+
     abstract public function getCommand();
 
     abstract public function getData();
@@ -77,6 +85,50 @@ abstract class AbstractRequest extends OmnipayAbstractRequest
         return $this->setParameter('description', $value);
     }
 
+    public function getAddCustomer()
+    {
+        if ($this->getParameter('addCustomer') === true) {
+            return 'yes';
+        }
+
+        return '';
+    }
+
+    public function setAddCustomer($value)
+    {
+        return $this->setParameter('addCustomer', $value);
+    }
+
+    public function getInterval()
+    {
+        $interval = $this->getParameter('interval');
+
+        return $this->intervals[$interval];
+    }
+
+    public function setInterval($value)
+    {
+        if (empty($value)) {
+            $value = '';
+        }
+
+        if (!in_array($value, array_keys($this->intervals))) {
+            throw new Exception('Interval not in list of allowed values.');
+        }
+
+        return $this->setParameter('interval', $value);
+    }
+
+    public function getIntervalCount()
+    {
+        return $this->getParameter('intervalCount');
+    }
+
+    public function setIntervalCount($value)
+    {
+        return $this->setParameter('intervalCount', (int) $value);
+    }
+
     /**
      * Get HTTP Method.
      *
@@ -123,6 +175,10 @@ abstract class AbstractRequest extends OmnipayAbstractRequest
             $umTransaction->invoice = $this->getInvoice();
             $umTransaction->amount = $data['amount'];
             $umTransaction->description = $this->getDescription();
+            $umTransaction->addcustomer = $this->getAddCustomer();
+            $umTransaction->schedule = $this->getInterval();
+            $umTransaction->numleft = $this->getIntervalCount();
+            $umTransaction->start = 'next';
 
             if (isset($data['card'])) {
                 $umTransaction->card = $this->getCard()->getNumber();
