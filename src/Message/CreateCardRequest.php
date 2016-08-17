@@ -3,7 +3,7 @@
 namespace Omnipay\USAePay\Message;
 
 /**
- * USAePay Authorize Request
+ * USAePay Create Card Request
  *
  * ### Example
  *
@@ -28,10 +28,9 @@ namespace Omnipay\USAePay\Message;
  *             'cvv'          => '123',
  * ));
  *
- * // Do an authorize transaction on the gateway
- * $transaction = $gateway->authorize(array(
- *     'amount'                   => '10.00',
- *     'currency'                 => 'USD',
+ * // Do a create card transaction on the gateway
+ * $transaction = $gateway->createCard(array(
+ *     'amount'                   => '1.00',
  *     'card'                     => $card,
  * ));
  * $response = $transaction->send();
@@ -42,30 +41,23 @@ namespace Omnipay\USAePay\Message;
  * }
  * </code>
  */
-class AuthorizeRequest extends AbstractRequest
+class CreateCardRequest extends AbstractRequest
 {
     public function getData()
     {
-        $data = [];
+        $this->validate('amount');
 
-        $this->validate('amount', 'currency');
+        $this->validate('card');
+        $this->getCard()->validate();
 
-        $data['amount'] = $this->getAmount();
-        $data['currency'] = strtolower($this->getCurrency());
-
-        if ($this->getCardReference()) {
-        } else {
-            $this->validate('card');
-            $this->getCard()->validate();
-
-            $data['card'] = $this->getCard();
-        }
-
-        return $data;
+        return array(
+            'amount' => $this->getAmount(),
+            'card' => $this->getCard(),
+        );
     }
 
     public function getCommand()
     {
-        return 'cc:authonly';
+        return 'cc:save';
     }
 }

@@ -153,4 +153,19 @@ class Gateway extends AbstractGateway
     {
         return $this->createRequest('\Omnipay\USAePay\Message\VoidRequest', $parameters);
     }
+
+    /**
+     * Create Card.
+     *
+     * This call can be used to create a new customer or add a card
+     * to an existing customer.
+     *
+     * @param array $parameters
+     *
+     * @return \Omnipay\USAePay\Message\CreateCardRequest
+     */
+    public function createCard(array $parameters = array())
+    {
+        return $this->createRequest('\Omnipay\USAePay\Message\CreateCardRequest', $parameters);
+    }
 }

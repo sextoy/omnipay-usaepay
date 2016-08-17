@@ -54,4 +54,19 @@ class Response extends AbstractResponse
     {
         return isset($this->data['UMerror']) ? $this->data['UMerror'] : null;
     }
+
+    public function getCardReferenceToken()
+    {
+        return isset($this->data['UMcardRef']) ? $this->data['UMcardRef'] : null;
+    }
+
+    public function getCardType()
+    {
+        return isset($this->data['UMcardType']) ? $this->data['UMcardType'] : null;
+    }
+
+    public function getMaskedCardNumber()
+    {
+        return isset($this->data['UMmaskedCardNum']) ? $this->data['UMmaskedCardNum'] : null;
+    }
 }

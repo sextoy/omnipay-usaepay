@@ -120,6 +120,9 @@ abstract class AbstractRequest extends OmnipayAbstractRequest
                 $umTransaction->cardholder = $this->getCard()->getName();
                 $umTransaction->street = $this->getCard()->getAddress1();
                 $umTransaction->zip = $this->getCard()->getPostcode();
+            } else if ($this->getCardReference()) {
+                $umTransaction->card = $this->getCardReference();
+                $umTransaction->exp = '0000';
             } else {
                 $umTransaction->refnum = $this->getTransactionReference();
             }
