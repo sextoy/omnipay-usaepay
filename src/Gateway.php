@@ -56,6 +56,7 @@ class Gateway extends AbstractGateway
     {
         return array(
             'source' => '',
+            'pin' => '',
             'testMode' => false,
             'sandbox' => false
         );
@@ -79,6 +80,16 @@ class Gateway extends AbstractGateway
     public function setSource($value)
     {
         return $this->setParameter('source', $value);
+    }
+
+    public function getPin()
+    {
+        return $this->getParameter('pin');
+    }
+
+    public function setPin($value)
+    {
+        return $this->setParameter('pin', $value);
     }
 
     /**
