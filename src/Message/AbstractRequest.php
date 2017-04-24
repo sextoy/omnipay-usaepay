@@ -2,6 +2,7 @@
 
 namespace Omnipay\USAePay\Message;
 
+use Exception;
 use Guzzle;
 use Guzzle\Common\Event;
 use Omnipay\Common\Message\AbstractRequest as OmnipayAbstractRequest;
@@ -206,7 +207,11 @@ abstract class AbstractRequest extends OmnipayAbstractRequest
                 $umTransaction->refnum = $this->getTransactionReference();
             }
 
-            $umTransaction->Process();
+            $processResult = $umTransaction->Process();
+
+            if ($processResult !== true) {
+                throw new Exception($umTransaction->error);
+            }
 
             $httpResponse = Guzzle\Http\Message\Response::fromMessage($umTransaction->rawresult);
         }
