@@ -45,6 +45,11 @@ class Response extends AbstractResponse
         return isset($this->data['UMauthCode']) ? $this->data['UMauthCode'] : null;
     }
 
+    public function getTransactionId()
+    {
+        return isset($this->data['UMrefNum']) ? $this->data['UMrefNum'] : null;
+    }
+
     public function getTransactionReference()
     {
         return isset($this->data['UMrefNum']) ? $this->data['UMrefNum'] : null;
